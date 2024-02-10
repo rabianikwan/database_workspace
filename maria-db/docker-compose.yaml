@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  db:
+  maria_db:
     image: mariadb:10.6.9 # LTS until 06.07.2026
     environment:
       MYSQL_ROOT_PASSWORD: admin
@@ -13,7 +13,7 @@ services:
     ports:
       - "3306:3306"
 
-  adminer:
+  adminer_maria_db:
     image: adminer
     ports:
       - "8081:8081"
