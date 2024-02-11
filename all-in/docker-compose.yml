@@ -9,53 +9,6 @@ volumes:
     grafana_data: {}
 
 services:
-  redis:
-    container_name: redis
-    image: redis:7
-    command: redis-server /usr/local/etc/redis/redis.conf
-    ports:
-      - 6379:6379
-    volumes:
-      - ./config_redis/redis.conf:/usr/local/etc/redis/redis.conf
-
-  maria_db:
-    image: mariadb:10.6.9 # LTS until 06.07.2026
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: timetracking
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-      TZ: Europe/Berlin
-    command: [ 'mysqld', '--character-set-server=utf8', '--collation-server=utf8_general_ci' ]
-    ports:
-      - "3306:3306"
-
-  adminer_maria_db:
-    image: adminer
-    ports:
-      - "8081:8081"
-
-
-  postgres:
-      image: postgres
-      environment:
-            - POSTGRES_USER=root
-            - POSTGRES_PASSWORD=root
-            - POSTGRES_DB=root
-      ports: 
-            - 5432:5432
-      logging:
-            options:
-                max-size: 10m
-                max-file: "3"
-  pgadmin:
-      image: dpage/pgadmin4
-      environment: 
-            - PGADMIN_DEFAULT_EMAIL=test@mail.com
-            - PGADMIN_DEFAULT_PASSWORD=test
-      ports: 
-            - "5050:80"
-
   prometheus:
     image: prom/prometheus
     container_name: prometheus
