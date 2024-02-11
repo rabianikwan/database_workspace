@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   maria_db:
-    image: mariadb:10.6.9 # LTS until 06.07.2026
+    image: mariadb:10.11 # LTS until 06.07.2026
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: timetracking
